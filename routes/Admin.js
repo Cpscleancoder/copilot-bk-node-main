@@ -47,7 +47,8 @@ router.post('/call-chatgpt-api', async (req, res) => {
   const prompt = req.body.prompt;
   const messages = [
     // { role: 'system', content: 'You: ' + prompt },
-    { role: 'user', content: prompt }
+   console.log(prompt, 'prompt')
+    { role: 'user', content: "helo AI" }
   ];
 
   const requestData = {
