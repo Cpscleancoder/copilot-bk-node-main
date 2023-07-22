@@ -40,6 +40,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
  
 const API_KEY = "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";
+
 const API_URL = "https://api.openai.com/v1/chat/completions";
 
 router.post('/call-chatgpt-api', async (req, res) => {
