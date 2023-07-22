@@ -39,7 +39,7 @@ const { Configuration, OpenAIApi } = require("openai");
  
 
  
-const API_KEY = "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";
+const API_KEY = "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";
 
 const API_URL = "https://api.openai.com/v1/chat/completions";
 
@@ -49,7 +49,7 @@ router.post('/call-chatgpt-api', async (req, res) => {
   const messages = [
     // { role: 'system', content: 'You: ' + prompt },
    
-    { role: 'user', content: "helo AI" }
+    { role: 'user', content: prompt }
   ];
 
   const requestData = {
