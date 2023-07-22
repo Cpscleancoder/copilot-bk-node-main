@@ -54,13 +54,13 @@ router.post('/call-chatgpt-api', async (req, res) => {
     messages: messages,
   };
 
-  // try {
+   try {
     const botMessage = await makeChatCompletionRequest(requestData);
     res.status(200).json({ content: botMessage });
-  // } catch (error) {
-  //   console.error('Error:', error.message);
-  //   res.status(500).json({ error: 'An error occurred while calling the OpenAI API.' });
-  // }
+  } catch (error) {
+    console.error('Error:', error.message);
+    res.status(500).json({ error: 'An error occurred while calling the OpenAI API.' });
+  }
 });
 
 async function makeChatCompletionRequest(requestData, numRetries = 3, retryDelay = 9000) {
