@@ -74,22 +74,23 @@ async function makeChatCompletionRequest(requestData, numRetries = 3, retryDelay
     }
   };
 
-  for (let i = 0; i < numRetries; i++) {
-    try {
-      const response = await axios.post(API_URL, requestData, config);
-      return response.data.choices[0].message.content;
-    } catch (error) {
-      if (error.response && error.response.status === 429) {
-        console.log('Rate limit exceeded. Retrying after delay...');
-        await delay(retryDelay);
-        retryDelay *= 2; // Exponential backoff
-      } else {
-        throw error;
-      }
-    }
-  }
-
-  throw new Error('Exceeded maximum number of retries');
+  // for (let i = 0; i < numRetries; i++) {
+  //   try {
+  //     const response = await axios.post(API_URL, requestData, config);
+  //     return response.data.choices[0].message.content;
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 429) {
+  //       console.log('Rate limit exceeded. Retrying after delay...');
+  //       await delay(retryDelay);
+  //       retryDelay *= 2; // Exponential backoff
+  //     } else {
+  //       throw error;
+  //     }
+  //   }
+  // }
+const response = await axios.post(API_URL, requestData, config);
+  return response.data.choices[0].message.content;
+  // throw new Error('Exceeded maximum number of retries');
 }
 
 function delay(ms) {
