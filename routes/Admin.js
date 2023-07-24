@@ -45,7 +45,7 @@ const API_URL = "https://api.openai.com/v1/chat/completions";
 
 router.post('/call-chatgpt-api', async (req, res) => {
   const prompt = req.body.prompt;
- console.log(prompt,req.body,API_KEY, 'prompt')
+ console.log(prompt, 'prompt new')
   const messages = [
     // { role: 'system', content: 'You: ' + prompt },
    
