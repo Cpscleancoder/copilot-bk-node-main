@@ -39,7 +39,6 @@ const { Configuration, OpenAIApi } = require("openai");
  
 
  
-const API_KEY = "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";
 
 const API_URL = "https://api.openai.com/v1/chat/completions";
 
@@ -66,17 +65,22 @@ router.post('/call-chatgpt-api', async (req, res) => {
   // }
 });
 
-async function makeChatCompletionRequest(requestData, numRetries = 3, retryDelay = 9000) {
+async function makeChatCompletionRequest(requestData) {
+ const API_KEY2 = "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";
+ const API_URL2 = "https://api.openai.com/v1/chat/completions";
+ const numRetries = 3; 
+ const retryDelay = 9000;
+ 
   const config = {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${API_KEY}`
+      'Authorization': `Bearer ${API_KEY2}`
     }
   };
    console.log(API_URL, requestData, config, 'conf');
   for (let i = 0; i < numRetries; i++) {
     try {
-      const response = await axios.post(API_URL, requestData, config);
+      const response = await axios.post(API_URL2, requestData, config);
       console.log(response, 'response', API_URL, requestData, config);
       return response.data.choices[0].message.content;
     } catch (error) {
@@ -89,7 +93,7 @@ async function makeChatCompletionRequest(requestData, numRetries = 3, retryDelay
       }
     }
   }
-const response = await axios.post(API_URL, requestData, config);
+const response = await axios.post(API_URL2, requestData, config);
   return response.data.choices[0].message.content;
   throw new Error('Exceeded maximum number of retries');
 }
