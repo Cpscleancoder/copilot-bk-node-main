@@ -73,7 +73,7 @@ async function makeChatCompletionRequest(requestData, numRetries = 3, retryDelay
       'Authorization': `Bearer ${API_KEY}`
     }
   };
-
+   console.log(API_URL, requestData, config, 'conf');
   for (let i = 0; i < numRetries; i++) {
     try {
       const response = await axios.post(API_URL, requestData, config);
