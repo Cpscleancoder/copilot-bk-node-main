@@ -39,7 +39,7 @@ const { Configuration, OpenAIApi } = require("openai");
  
 
  
-const API_KEY = "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";
+const API_KEY = "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";
 
 const API_URL = "https://api.openai.com/v1/chat/completions";
 
