@@ -36,13 +36,25 @@ const { Configuration, OpenAIApi } = require("openai");
 //   }
 // })
 
- 
+ router.post('/call-chatgpt-api', async (req, res) => {
+const configuration = new Configuration({
+  apiKey: "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,
+});
+const openai = new OpenAIApi(configuration);
+
+const completion = await openai.createChatCompletion({
+  model: "gpt-3.5-turbo",
+  messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: "Hello world"}],
+});
+console.log(completion.data);
+res.status(200).json({ content: completion.data.choices[0].message });
+ });
 
  
 
 const API_URL = "https://api.openai.com/v1/chat/completions";
 
-router.post('/call-chatgpt-api', async (req, res) => {
+router.post('/call-chatgpt-api11', async (req, res) => {
   const prompt = req.body.prompt;
  console.log(prompt, 'prompt new')
   const messages = [
