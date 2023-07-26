@@ -66,7 +66,7 @@ router.post('/call-chatgpt-api', async (req, res) => {
 });
 
 async function makeChatCompletionRequest(requestData) {
- const API_KEY2 = "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";
+ const API_KEY2 = "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";
  const API_URL2 = "https://api.openai.com/v1/chat/completions";
  const numRetries = 3; 
  const retryDelay = 9000;
@@ -77,12 +77,11 @@ async function makeChatCompletionRequest(requestData) {
       'Authorization': `Bearer ${API_KEY2}`
     }
   };
-   console.log(API_URL, requestData, config, 'conf');
+   console.log(API_URL, requestData, 'conf');
   for (let i = 0; i < numRetries; i++) {
     try {
       const response = await axios.post(API_URL2, requestData, config);
-      console.log(response, 'response', API_URL, requestData, config);
-      return response.data.choices[0].message.content;
+       return response.data.choices[0].message.content;
     } catch (error) {
       if (error.response && error.response.status === 429) {
         console.log('Rate limit exceeded. Retrying after delay...');
