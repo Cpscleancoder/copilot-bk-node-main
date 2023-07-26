@@ -46,7 +46,7 @@ const openai = new OpenAIApi(configuration);
    try {
         const completion = await openai.createChatCompletion({
           model: "gpt-3.5-turbo",
-          messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: req.body.prompt}],
+          messages: [ {role: "user", content: req.body.prompt}],
         });
         res.status(200).json({ content: completion.data.choices[0].message });
      } catch (error) {
