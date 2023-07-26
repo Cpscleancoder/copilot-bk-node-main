@@ -38,7 +38,7 @@ const { Configuration, OpenAIApi } = require("openai");
 
  router.post('/call-chatgpt-api', async (req, res) => {
 const configuration = new Configuration({
-  apiKey: "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",
+  apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
