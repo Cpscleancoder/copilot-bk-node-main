@@ -9,6 +9,7 @@ const uploadImg = require('../src/uploader')
 const path = require('path')
 const axios = require('axios');
 const { Configuration, OpenAIApi } = require("openai");
+require('dotenv').config();
  // all none alcohlic perfume
 // router.post('/call-chatgpt-api', async (req, res) => { 
 //  console.log(req.body.prompt, 'req')
