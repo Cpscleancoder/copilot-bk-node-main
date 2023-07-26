@@ -42,13 +42,17 @@ const configuration = new Configuration({
   apiKey: process.env.open_api_key,
 });
 const openai = new OpenAIApi(configuration);
-
-const completion = await openai.createChatCompletion({
-  model: "gpt-3.5-turbo",
-  messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: "Hello world"}],
-});
-console.log(completion.data);
-res.status(200).json({ content: completion.data.choices[0].message });
+ 
+   try {
+        const completion = await openai.createChatCompletion({
+          model: "gpt-3.5-turbo",
+          messages: [{"role": "system", "content": "You are a helpful assistant."}, {role: "user", content: req.body.prompt}],
+        });
+        res.status(200).json({ content: completion.data.choices[0].message });
+     } catch (error) {
+      console.error('Error:', error.message);
+      res.status(500).json({ error: 'An error occurred while calling the OpenAI API.' });
+     } 
  });
 
  
